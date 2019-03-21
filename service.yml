@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: kubernetes-kevin
+  name: kubernetes-kevin
+  namespace: default
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - nodePort: 30233
+    port: 9000
+    protocol: TCP
+    targetPort: 9000
+  selector:
+    run: kubernetes-kevin
+  sessionAffinity: None
+  type: LoadBalancer
